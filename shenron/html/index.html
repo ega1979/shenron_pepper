@@ -1,0 +1,41 @@
+<html>
+<head lang="ja">
+  <meta charset="utf-8">
+  <title>ログだよ</title>
+    <script src="https://code.jquery.com/jquery-2.1.3.min.js"></script>
+  <body>
+  
+  <h1>ここに表示されるよ</h1>
+<ul>
+  <li>テキストテキストテキストテキストテキストテキストテキスト</li>
+  <li>テキストテキストテキストテキストテキストテキストテキスト</li>
+  <li>テキストテキストテキストテキストテキストテキストテキスト</li>
+  <li>テキストテキストテキストテキストテキストテキストテキスト</li>
+</ul>
+<ul>
+  <li>テキストテキストテキストテキストテキストテキストテキスト</li>
+  <li>テキストテキストテキストテキストテキストテキストテキスト</li>
+  <li>テキストテキストテキストテキストテキストテキストテキスト</li>
+  <li>テキストテキストテキストテキストテキストテキストテキスト</li>
+</ul>
+
+  <script>
+  $(function(){
+      $("li:first-child").css("color","red");
+  });
+$.getJSON(
+    "https://app.rakuten.co.jp/services/api/IchibaItem/Search/20120723?callback=?", 
+    {keyword:"Shorts",applicationId:"1008640046224785711",imageFlag:"1"},
+        function(data){
+            $.each(data.Items, function(i,item){
+                $("<a>").attr("href", item.Item.itemUrl).appendTo("#images")
+               .append($("<img/>").attr("src", item.Item.mediumImageUrls[0].imageUrl));
+            });
+        }
+);
+  </script>
+  <div id="images">
+  </div>
+  </body>
+</html>
+
